@@ -9,9 +9,11 @@ import java.util.List;
 public class AsterixController {
 
     private final CharacterRepository characterRepository;
+    private final PetRepository petRepository;
 
-    public AsterixController(CharacterRepository characterRepository) {
+    public AsterixController(CharacterRepository characterRepository, PetRepository petRepository) {
         this.characterRepository = characterRepository;
+        this.petRepository = petRepository;
     }
 
     @GetMapping("/characters")
@@ -40,5 +42,20 @@ public class AsterixController {
     @DeleteMapping("/characters/{id}")
     public void deleteCharacter(@PathVariable String id) {
         characterRepository.deleteById(id);
+    }
+
+    @PostMapping("/pets")
+    public Pet postPet(@RequestBody Pet pet) {
+        petRepository.insert(pet);
+
+        return pet;
+    }
+
+    @GetMapping("/pets")
+    public List<Pet> getPets(@RequestParam (required = false) Boolean eatable) {
+        if (eatable == null)
+            return petRepository.findAll();
+        else
+            return petRepository.findByEatableEquals(eatable);
     }
 }
