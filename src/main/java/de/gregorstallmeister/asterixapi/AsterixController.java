@@ -15,9 +15,12 @@ public class AsterixController {
     }
 
     @GetMapping("/characters")
-    public List<Character> getCharacters () {
+    public List<Character> getCharacters(@RequestParam(required = false) Integer age) {
 
-        return characterRepository.findAll();
+        if (age == null)
+            return characterRepository.findAll();
+        else
+            return characterRepository.findAllByAge(age);
     }
 
     @PostMapping("/characters")
