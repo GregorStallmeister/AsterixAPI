@@ -3,7 +3,6 @@ package de.gregorstallmeister.asterixapi;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,6 +43,7 @@ public class AsterixServiceTest {
         Optional<Character> actual = asterixService.findCharacterById(id);
 
         // then
+        assertTrue(actual.isPresent());
         assertEquals(character, actual.get());
 //        verify(mockIdService.randomId());
 //        verify(mockCharacterRepository.findById(id));
