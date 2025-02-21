@@ -20,8 +20,8 @@ public class AsterixController {
     }
 
     @PostMapping("/characters")
-    public Character insertCharacter(@RequestBody NewCharacterDTO character) {
-        return asterixService.insertCharacter(character);
+    public Character insertCharacter(@RequestBody CharacterNewDto characterNewDto) {
+        return asterixService.insertCharacter(characterNewDto);
     }
 
     @PutMapping("/characters")

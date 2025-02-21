@@ -1,6 +1,6 @@
 package de.gregorstallmeister.asterixapi;
 
-public record NewCharacterDTO(
+public record CharacterNewDto(
         String name,
         int age,
         String profession

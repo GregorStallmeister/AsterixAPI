@@ -23,9 +23,9 @@ public class AsterixService {
                     .toList();
     }
 
-    public Character insertCharacter (NewCharacterDTO newCharacterDTO) {
+    public Character insertCharacter (CharacterNewDto characterNewDto) {
         String id = idService.randomId();
-        Character insertCharacter = new Character(id, newCharacterDTO.name(), newCharacterDTO.age(), newCharacterDTO.profession());
+        Character insertCharacter = new Character(id, characterNewDto.name(), characterNewDto.age(), characterNewDto.profession());
         characterRepository.insert(insertCharacter);
 
         return insertCharacter;
