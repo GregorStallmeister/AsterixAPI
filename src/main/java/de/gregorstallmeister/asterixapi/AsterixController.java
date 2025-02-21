@@ -8,54 +8,39 @@ import java.util.List;
 @RequestMapping("/asterix")
 public class AsterixController {
 
-    private final CharacterRepository characterRepository;
-    private final PetRepository petRepository;
+    private final AsterixService asterixService;
 
-    public AsterixController(CharacterRepository characterRepository, PetRepository petRepository) {
-        this.characterRepository = characterRepository;
-        this.petRepository = petRepository;
+    public AsterixController(AsterixService asterixService) {
+        this.asterixService = asterixService;
     }
 
     @GetMapping("/characters")
     public List<Character> getCharacters(@RequestParam(required = false) Integer age) {
-
-        if (age == null)
-            return characterRepository.findAll();
-        else
-            return characterRepository.findAllByAge(age);
+        return asterixService.findAllCharacters(age);
     }
 
     @PostMapping("/characters")
-    public Character postCharacter(@RequestBody Character character) {
-        characterRepository.insert(character);
-
-        return character;
+    public Character insertCharacter(@RequestBody NewCharacterDTO character) {
+        return asterixService.insertCharacter(character);
     }
 
     @PutMapping("/characters")
     public Character updateCharacter(@RequestBody Character character) {
-        characterRepository.save(character);
-
-        return character;
+        return asterixService.updateCharacter(character);
     }
 
     @DeleteMapping("/characters/{id}")
     public void deleteCharacter(@PathVariable String id) {
-        characterRepository.deleteById(id);
+        asterixService.deleteCharacterById(id);
     }
 
     @PostMapping("/pets")
     public Pet postPet(@RequestBody Pet pet) {
-        petRepository.insert(pet);
-
-        return pet;
+        return asterixService.insertPet(pet);
     }
 
     @GetMapping("/pets")
     public List<Pet> getPets(@RequestParam (required = false) Boolean eatable) {
-        if (eatable == null)
-            return petRepository.findAll();
-        else
-            return petRepository.findByEatableEquals(eatable);
+        return asterixService.findPets(eatable);
     }
 }
