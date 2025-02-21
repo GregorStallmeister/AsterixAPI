@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,10 @@ public class AsterixService {
 
     public Character updateCharacter(Character character) {
         return characterRepository.save(character);
+    }
+
+    public Optional<Character> findCharacterById (String id) {
+        return characterRepository.findById(id);
     }
 
     public void deleteCharacterById(String id) {
