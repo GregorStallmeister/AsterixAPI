@@ -15,8 +15,8 @@ public class AsterixController {
     }
 
     @GetMapping("/characters")
-    public List<Character> getCharacters(@RequestParam(required = false) Integer age) {
-        return asterixService.findAllCharacters(age);
+    public List<Character> getCharacters(@RequestParam(required = false) Integer maxage) {
+        return asterixService.findAllCharacters(maxage);
     }
 
     @PostMapping("/characters")

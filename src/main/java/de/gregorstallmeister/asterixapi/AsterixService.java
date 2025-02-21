@@ -13,11 +13,14 @@ public class AsterixService {
     private final PetRepository petRepository;
     private final IdService idService;
 
-    public List<Character> findAllCharacters (Integer age) {
-        if (age == null)
+    public List<Character> findAllCharacters (Integer maxAge) {
+        if (maxAge == null)
             return characterRepository.findAll();
         else
-            return characterRepository.findAllByAge(age);
+            return characterRepository.findAll()
+                    .stream()
+                    .filter(character -> character.age() <= maxAge)
+                    .toList();
     }
 
     public Character insertCharacter (NewCharacterDTO newCharacterDTO) {
