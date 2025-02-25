@@ -45,8 +45,9 @@ public class AsterixServiceTest {
         // then
         assertTrue(actual.isPresent());
         assertEquals(character, actual.get());
-//        verify(mockIdService.randomId());
-//        verify(mockCharacterRepository.findById(id));
+
+        verify(mockIdService).randomId();
+        verify(mockCharacterRepository).findById(id);
     }
 
     @Test
@@ -60,6 +61,7 @@ public class AsterixServiceTest {
 
         // then
         assertTrue(actual.isEmpty());
-//        verify(mockCharacterRepository.findById(id));
+
+        verify(mockCharacterRepository).findById(id);
     }
 }
